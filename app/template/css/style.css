@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex; /* Гибкое позиционирование страницы */
+    flex-direction: column; /* Отображение элементов в столбец*/
+    height: 100%; /* Высота страницы */
+    background-color: #FFF; /* Цвет фона всей страницы */
+    font-family: 'Open Sans', sans-serif; /* Шрифт текста */
+    min-width: 650px;
+    min-height: 325px;
+}
+
+/*HEADER*/
+header {
+    color: #1f1f1f; /* Цвет заголовка */
+    font-size: 52px; /* Размер заголовка */
+    font-style: italic; /* Курсив */
+    font-weight: bold; /* Жирный */
+    padding: 1%; /* Поля вокруг заголовка */
+}
+header img {
+    height: 64; /* Размер логотипа */
+    position: relative; /* Положение логотипа */
+    top: 10px;
+    margin-top: -18px;
+}
+
+/*NAVIGATION/MENU*/
+nav ul {    
+    display: flex; /* Гибкое позиционирование меню */
+    align-self: center; /**/
+    flex-direction: row; /* Отображение списка с строку */
+    justify-content: center; /* Центрирование меню */
+    list-style: none; /* Для списка убираем маркеры */    
+}
+nav > ul > li {
+    border-bottom: 2px solid #f0f0f0; /* Линия под меню*/
+    padding-right: 24px; /* Увеличиное поле между элементами меню */    
+}
+nav a {
+    display: block; /* Ссылка как блочный элемент */
+    padding: 16px; /* Поля вокруг эл-тов меню */    
+    text-decoration: none; /* Подчеркивание у ссылок убираем */
+    font-weight: bold; /* Жирный */
+    color: #444; /* Цвет текста */
+}
+nav ul ul {
+    display: none; /* Скрываем подменю */
+    position: absolute; /* Подменю позиционируются абсолютно */    
+    background-color: #f0f0f0; /* Цвет фона */
+    border-radius: 8px;
+}
+nav li:hover ul {
+    display: block; /* При выделении пункта курсором мыши отображается подменю */
+}
+nav a:hover {
+    color: #dd3333; /* Цвет текста активного пункта */
+}
+.menu-item-has-child > a::after {
+    position: absolute; /* Абсолютное позиционирование */
+    border: 6px solid transparent; /* Прозрачные границы */
+    border-top: 6px solid #1f1f1f; /* Добавляем треугольник */
+    content: '';        
+    margin: 5px;
+}
+
+/*CONTENT*/
+#content {
+    flex: 1 0 auto;   
+    color: #1f1f1f; /* Цвет текста */        
+    padding: 16px;
+    margin-left: 10%; 
+    margin-right: 10%;
+}
+#content h1 {
+    padding: 16px;
+}
+#content p {
+    background-color: #f0f0f0; /* Цвет фона */
+    padding: 16px;
+}
+
+/*FOOTER*/
+footer {
+    flex: 0 0 auto;
+    color: #444; /* Цвет текста */
+    background-color: #f0f0f0; /* Цвет фона */
+    padding: 36px;
+    width: 1200px;
+}
+footer .footer-inner {
+    /*max-width: 1160px;
+    margin: 0 auto;*/
+    margin-left: 8%; 
+}
