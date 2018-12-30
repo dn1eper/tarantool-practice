@@ -1,11 +1,12 @@
 <?php
-    require_once('migrations.php')
-    $config = require('config.php')
+    ini_set('display_errors', 1);
 
-    $db = new Migration($config['host'], $config['user'], $config['password'], $config['database']);
-
+    require_once('migration.php');
+    
+    $db = new Migration();
+    
     if ($db->is_error()) {
-        echo $db->error_msg();
+        echo "Error: ".$db->error_msg();
     }
     else {
         if ($db->last_new_version()) {
@@ -19,5 +20,12 @@
             else echo "Avalible new version ".$db->last_new_version().", but migration faild. Try again.";
         }            
         else echo "Your have the latest database version.";
+        
+        
+        echo "<br>";
+        if ($db->query("select * from user")) {
+            echo "OK";
+        }
+        else echo $db->error_msg();
     }
 

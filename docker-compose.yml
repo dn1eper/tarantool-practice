@@ -1,0 +1,14 @@
+version: '3'
+services:
+    lamp:
+        image: mattrayner/lamp:latest
+        ports:
+            - 80:80
+        volumes:
+            - ./app:/var/www/html:z
+        environment:
+            TZ: "Europe/Moscow"
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'password'
+            

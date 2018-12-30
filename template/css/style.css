@@ -71,7 +71,7 @@ nav a:hover {
     flex: 1 0 auto;   
     color: #1f1f1f; /* Цвет текста */        
     padding: 16px;
-    margin-left: 10%; 
+    margin-left: 20%; 
     margin-right: 10%;
 }
 #content h1 {
@@ -88,10 +88,9 @@ footer {
     color: #444; /* Цвет текста */
     background-color: #f0f0f0; /* Цвет фона */
     padding: 36px;
-    width: 1200px;
+    
 }
 footer .footer-inner {
-    /*max-width: 1160px;
-    margin: 0 auto;*/
-    margin-left: 8%; 
+    width: 92%;
+    margin-left: 8%;
 }
