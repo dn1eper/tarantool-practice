@@ -1,11 +1,9 @@
-DROP DATABASE IF EXISTS app;
-CREATE DATABASE app;
-USE app;
-
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
     user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(50) NOT NULL,
-    pass_hash TEXT
+    pass_hash TEXT NOT NULL,
+    email VARCHAR(50),
+    token_refresh VARCHAR(50)
 ) ENGINE=INNODB;

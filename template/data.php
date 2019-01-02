@@ -30,8 +30,8 @@
     // NAVIGATION/MENU
     $__NAV = array(
 		array('name' => 'Main page', 'title' => 'Main page', 'url' => '/', 'parent' => '0', 'id' => '1'),
-		array('name' => 'Login', 'title' => 'Описание 2.1', 'url' => 'login.php', 'parent' => '0', 'id' => '5'),
-		array('name' => 'SignUp', 'title' => 'Описание 3', 'url' => 'signup.php', 'parent' => '0', 'id' => '6')        
+		array('name' => 'Login', 'title' => 'Login', 'url' => 'login.php', 'parent' => '0', 'id' => '2'),
+		array('name' => 'SignUp', 'title' => 'SignUp', 'url' => 'signup.php', 'parent' => '0', 'id' => '3')        
     );
     
     // FOOTER

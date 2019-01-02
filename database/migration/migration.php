@@ -5,18 +5,14 @@ class Migration extends Database {
     private $cur_version;
     private $new_migration_files;
 
-    function __construct() {        
+    function __construct() {
         parent::__construct();
         /* get current database version */        
-        $this->cur_version = array_pop($this->mysqli->query("select * from ".Database::VERSIONS_TABLE)->fetch_all(MYSQLI_ASSOC));
+        $this->cur_version = array_pop($this->mysqli->query("SELECT * FROM " .Database::VERSIONS_TABLE)->fetch_all(MYSQLI_ASSOC));
         /* get migration files */
         $this->new_migration_files = $this->getNewMigrationFiles();
         return true;        
 	}
-    private function new_error($error_msg) {
-        $this->error = $error_msg;
-        return false;
-    }
     private function getNewMigrationFiles() {
         /* all sql files in folder */
         $allFiles = glob('*.sql');        
@@ -41,7 +37,7 @@ class Migration extends Database {
 
     /* public interface */
     public function cur_version() {
-        if ($this->is_error()) return;
+        if ($this->is_error()) return false;
         else {
             if ($this->cur_version) {
                 return $this->cur_version['version'].".".$this->cur_version['sub_version'];
@@ -54,7 +50,7 @@ class Migration extends Database {
         else return $this->cur_version['date_applied'];
     }
     public function last_new_version() {
-        if ($this->is_error() || !sizeof($this->new_migration_files)) return;
+        if ($this->is_error() || !sizeof($this->new_migration_files)) return false;
         else return substr(basename($this->new_migration_files[sizeof($this->new_migration_files)-1]), 5, 5);
     }
     public function migrate() {        
@@ -65,14 +61,15 @@ class Migration extends Database {
                 $script = file_get_contents($file);
                 /* get file name */
                 $name = basename($this->new_migration_files[$index]);
-                /* execute script */                
-                if (!$this->query($script)) {
-                    return $this->new_error("An error occurred while executing the file ".$name.". Migration stopped. <br><br>".$this->mysqli->error);
+                /* execute script */
+                foreach (split(";", $script) as $scr) {
+                    if ($scr && !$this->mysqli->query($scr)) {
+                        return $this->new_error($this->mysqli->error);
+                    }
                 }
                 /* write record to the MIGRATION_HISTORY */                
-                $record = "INSERT INTO ".Database::VERSIONS_TABLE."(version, sub_version, commentary, date_applied) VALUES('"
-                        .substr($name, 0, 2)."','".substr($name, 3, 2)."', 'null', NOW());";
-                //echo $record;
+                $record = "INSERT INTO " .Database::VERSIONS_TABLE. "(version, sub_version, commentary) VALUES('"
+                    .substr($name, 0, 2). "','" .substr($name, 3, 2). "', 'null');";
                 if ($this->mysqli->query($record)) return true;
                 else return $this->new_error($this->mysqli->error);
             }
