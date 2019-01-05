@@ -5,5 +5,6 @@ CREATE TABLE user (
     login VARCHAR(50) NOT NULL,
     pass_hash TEXT NOT NULL,
     email VARCHAR(50),
-    token_refresh VARCHAR(50)
+    refresh_token VARCHAR(50),
+    refresh_token_expires_in INT
 ) ENGINE=INNODB;

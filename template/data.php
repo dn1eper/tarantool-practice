@@ -39,11 +39,11 @@
 
     // SCRIPT FILES
 	$__SCRIPT = array();
-	if (is_dir("template/javascript/") ) {
-		$dh = opendir("template/javascript/");
+	if (is_dir("template/js/") ) {
+		$dh = opendir("template/js/");
 		while ($file = readdir($dh)) {
 			if (pathinfo($file, PATHINFO_EXTENSION) == 'js') {
-				$__SCRIPT[] = "template/javascript".$file;
+				$__SCRIPT[] = "template/js".$file;
 			}
 		}
 		closedir($dh);
